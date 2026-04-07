@@ -1,0 +1,7 @@
+[project]
+name = "poker-python-project"
+version = "0.1.0"
+description = "A project to practice data analysis techniques on the game of poker."
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = []
