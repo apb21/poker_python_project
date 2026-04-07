@@ -11,3 +11,4 @@ wheels/
 
 # Project Settings
 .vscode/settings.json
+!.vscode/settings.sample.json
