@@ -2,14 +2,19 @@
 class purposed with create, read, update, delete functions of a deck (deque) of cards
 """
 
-import typing
 import json
 import random
 from collections import deque
+from importlib import resources
 from itertools import islice
+from typing import Dict
 
 
 class Deck:
+    """
+    Build a deck of cards
+    """
+
     def __init__(self, shuffled: bool = True) -> None:
         """
         create a list of cards loaded from data/deck.json
@@ -18,8 +23,9 @@ class Deck:
         remaining: deque[str] = deque()
         taken: deque[str] = deque()
         discarded: deque[str] = deque()
-        symbols: dict[str, str] = {}
-        with open("data/deck.json", "r") as file:
+        symbols: Dict[str, str] = {}
+        source = resources.files("poker_python_project.data").joinpath("deck.json")
+        with source.open("r", encoding="utf-8") as file:
             data = json.load(file)
             for suit in data["suit_names"]:
                 for card in data["card_names"]:
@@ -42,12 +48,12 @@ class Deck:
             self.remaining = remaining
             # The cards taken from the deck (initially none of them)
             self.taken = taken
-            # The cards taken from the deck and then discarded (not in hand), initally none of them
+            # The cards taken from the deck and then discarded (not in hand)
             self.discarded = discarded
 
     def draw(self, number: int = 1) -> deque[str]:
         """
-        remove cards from the "top" of the remaining cards and record that they are taken.
+        remove cards from the "top" of the remaining cards and record they are taken.
         """
         drawn: deque[str] = deque(islice(self.remaining, number))
         for _ in range(len(drawn)):
@@ -67,7 +73,7 @@ class Deck:
 
     def peek(self, number: int = 1) -> deque[str]:
         """
-        reveal cards from the "top" of the deck without removing them (remain in same order)
+        reveal cards from the "top" of the deck without removing them (in same order)
         """
         peeked: deque[str] = deque(islice(self.remaining, number))
         return peeked
@@ -83,9 +89,7 @@ class Deck:
             random.shuffle(temp_list)
             self.remaining = deque(temp_list)
         recycled_set: set[str] = set(self.discarded)
-        self.taken: deque[str] = deque(
-            card for card in self.taken if card not in recycled_set
-        )
+        self.taken = deque(card for card in self.taken if card not in recycled_set)
         self.discarded.clear()
         completed = True
         return completed
