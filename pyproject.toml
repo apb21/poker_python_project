@@ -5,3 +5,20 @@ description = "A project to practice data analysis techniques on the game of pok
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = []
+[project.optional-dependencies]
+dev = [
+    "black",
+    "flake8",
+    "flake8-black",
+    "flake8-pyproject",
+    "pytest",
+    "pylint",
+    "isort",
+    "mypy",
+]
+[tool.black]
+line-length = 88
+[tool.flake8]
+max-line-length = 88
+[tool.setuptools.package-data]
+"poker_python_project.data" = ["*.json"]
