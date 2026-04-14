@@ -41,15 +41,15 @@ class Deck:
                 random.shuffle(temp_list)
                 remaining = deque(temp_list)
             # The list of cards in the deck overall
-            self.cards = cards
+            self.cards: deque = cards
             # The symbols for the cards in the deck
-            self.symbols = symbols
+            self.symbols: Dict = symbols
             # The cards still remaining in the deck (initally all of them)
-            self.remaining = remaining
+            self.remaining: deque = remaining
             # The cards taken from the deck (initially none of them)
-            self.taken = taken
+            self.taken: deque = taken
             # The cards taken from the deck and then discarded (not in hand)
-            self.discarded = discarded
+            self.discarded: deque = discarded
 
     def draw(self, number: int = 1) -> deque[str]:
         """
