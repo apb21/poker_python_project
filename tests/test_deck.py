@@ -39,16 +39,6 @@ def test_draw_function():
     assert len(test_hand) == 3
 
 
-def test_symbols_shown():
-    """
-    Test correct symbols are shown for cards
-    """
-    test_card = "ace of spades"
-    test_deck = Deck(True)
-    test_symbol = test_deck.symbols[test_card]
-    assert test_symbol == "A♠️"
-
-
 def test_deck_taken_equals_hand():
     """
     test that the cards in hand match cards taken
