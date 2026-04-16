@@ -46,13 +46,13 @@ class Deck:
                 random.shuffle(temp_list)
                 remaining = deque(temp_list)
             # The list of cards in the deck overall
-            self.cards: Deque = cards
+            self.cards: Deque[Card] = cards
             # The cards still remaining in the deck (initally all of them)
-            self.remaining: Deque = remaining
+            self.remaining: Deque[Card] = remaining
             # The cards taken from the deck (initially none of them)
-            self.taken: Deque = taken
+            self.taken: Deque[Card] = taken
             # The cards taken from the deck and then discarded (not in hand)
-            self.discarded: Deque = discarded
+            self.discarded: Deque[Card] = discarded
 
     def draw(self, number: int = 1) -> Deque[Card]:
         """
@@ -91,7 +91,7 @@ class Deck:
             temp_list = list(self.remaining)
             random.shuffle(temp_list)
             self.remaining = deque(temp_list)
-        recycled_set: set[str] = set(self.discarded)
+        recycled_set: set[Card] = set(self.discarded)
         self.taken = deque(card for card in self.taken if card not in recycled_set)
         self.discarded.clear()
         completed = True
