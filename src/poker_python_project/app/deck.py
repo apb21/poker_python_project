@@ -7,7 +7,9 @@ import random
 from collections import deque
 from importlib import resources
 from itertools import islice
-from typing import Dict
+from typing import Deque
+
+from poker_python_project.app.card import Card
 
 
 class Deck:
@@ -19,63 +21,64 @@ class Deck:
         """
         create a list of cards loaded from data/deck.json
         """
-        cards: deque[str] = deque()
-        remaining: deque[str] = deque()
-        taken: deque[str] = deque()
-        discarded: deque[str] = deque()
-        symbols: Dict[str, str] = {}
+        cards: Deque[Card] = deque()
+        remaining: Deque[Card] = deque()
+        taken: Deque[Card] = deque()
+        discarded: Deque[Card] = deque()
         source = resources.files("poker_python_project.data").joinpath("deck.json")
         with source.open("r", encoding="utf-8") as file:
             data = json.load(file)
             for suit in data["suit_names"]:
                 for card in data["card_names"]:
-                    this_card = f"{card} of {suit}"
-                    this_symbol = (
-                        f"{data["card_symbols"][card]}{data["suit_symbols"][suit]}"
+                    this_card = Card(
+                        name=f"{card} of {suit}",
+                        suit=suit,
+                        value=card,
+                        symbol=(
+                            str(data["card_symbols"][card])
+                            + str(data["suit_symbols"][suit])
+                        ),
                     )
                     cards.append(this_card)
                     remaining.append(this_card)
-                    symbols[this_card] = this_symbol
             if shuffled:
                 temp_list = list(remaining)
                 random.shuffle(temp_list)
                 remaining = deque(temp_list)
             # The list of cards in the deck overall
-            self.cards: deque = cards
-            # The symbols for the cards in the deck
-            self.symbols: Dict = symbols
+            self.cards: Deque = cards
             # The cards still remaining in the deck (initally all of them)
-            self.remaining: deque = remaining
+            self.remaining: Deque = remaining
             # The cards taken from the deck (initially none of them)
-            self.taken: deque = taken
+            self.taken: Deque = taken
             # The cards taken from the deck and then discarded (not in hand)
-            self.discarded: deque = discarded
+            self.discarded: Deque = discarded
 
-    def draw(self, number: int = 1) -> deque[str]:
+    def draw(self, number: int = 1) -> Deque[Card]:
         """
         remove cards from the "top" of the remaining cards and record they are taken.
         """
-        drawn: deque[str] = deque(islice(self.remaining, number))
+        drawn: Deque[Card] = deque(islice(self.remaining, number))
         for _ in range(len(drawn)):
             self.remaining.popleft()
         self.taken.extend(drawn)
         return drawn
 
-    def mill(self, number: int = 1) -> deque[str]:
+    def mill(self, number: int = 1) -> Deque[Card]:
         """
         move cards from the top of the deck to the discard pile
         """
-        milled: deque[str] = deque(islice(self.remaining, number))
+        milled: Deque[Card] = deque(islice(self.remaining, number))
         for _ in range(len(milled)):
             self.remaining.popleft()
         self.discarded.extend(milled)
         return milled
 
-    def peek(self, number: int = 1) -> deque[str]:
+    def peek(self, number: int = 1) -> Deque[Card]:
         """
         reveal cards from the "top" of the deck without removing them (in same order)
         """
-        peeked: deque[str] = deque(islice(self.remaining, number))
+        peeked: Deque[Card] = deque(islice(self.remaining, number))
         return peeked
 
     def recycle(self, shuffled: bool = True) -> bool:
