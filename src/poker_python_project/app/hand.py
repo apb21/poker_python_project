@@ -3,7 +3,9 @@ class purposed with the create, read, update, and delete functions of a hand of 
 """
 
 from collections import deque
+from typing import Deque, Set
 
+from poker_python_project.app.card import Card
 from poker_python_project.app.deck import Deck
 
 
@@ -17,16 +19,16 @@ class Hand:
         Hand must have a Deck to draw from
         """
         self._deck = draw_from
-        self._cards: deque[str] = deque()
-        self._search: set[str] = set()
+        self._cards: Deque[Card] = deque()
+        self._search: Set[Card] = set()
 
-    def check(self, card: str) -> bool:
+    def check(self, card: Card) -> bool:
         """
         Check if the named card is in hand
         """
         return card in self._search
 
-    def discard(self, card: str) -> None:
+    def discard(self, card: Card) -> None:
         """
         Take a named card from hand and add to the discard pile
         """
@@ -35,22 +37,22 @@ class Hand:
             self._search.remove(card)
             self._deck.discarded.extend([card])
 
-    def draw(self, number: int) -> deque[str]:
+    def draw(self, number: int) -> Deque[Card]:
         """
         Take cards from the Deck and add them to hand
         """
-        cards_drawn = self._deck.draw(number)
+        cards_drawn: Deque[Card] = self._deck.draw(number)
         self._cards.extend(cards_drawn)
         self._search.update(cards_drawn)
         return cards_drawn
 
-    def show(self) -> deque[str]:
+    def show(self) -> Deque[Card]:
         """
         Return the list of cards in hand
         """
         return self._cards
 
-    def play(self, card: str, removed: bool = True) -> str | None:
+    def play(self, card: Card, removed: bool = True) -> Card | None:
         """
         Return a card from Hand, and optionally discard afterwards
         """
