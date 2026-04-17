@@ -1,0 +1,102 @@
+{
+  "card_scores":{
+     "ace":           [ 1, 14]
+    ,"two":           [ 2]
+    ,"three":         [ 3]
+    ,"four":          [ 4]
+    ,"five":          [ 5]
+    ,"six":           [ 6]
+    ,"seven":         [ 7]
+    ,"eight":         [ 8]
+    ,"nine":          [ 9]
+    ,"ten":           [10]
+    ,"jack":          [11]
+    ,"queen":         [12]
+    ,"king":          [13]
+  },
+  "hand_ranks":{
+    "high_card":{
+       "rank_value":  1
+      ,"value_count": 5
+      ,"value_max":   1
+      ,"suit_count":  4
+      ,"max_range":  13
+      ,"min_value":   1
+    },
+    "pair":{
+       "rank_value":  2
+      ,"value_count": 4
+      ,"value_max":   2
+      ,"suit_count":  4
+      ,"max_range":  13
+      ,"min_value":   1
+    },
+    "two_pair":{
+       "rank_value":  3
+      ,"value_count": 3
+      ,"value_max":   2
+      ,"suit_count":  4
+      ,"max_range":  13
+      ,"min_value":   1
+    },
+    "three_of_a_kind":{
+       "rank_value":  4
+      ,"value_count": 3
+      ,"value_max":   3
+      ,"suit_count":  4
+      ,"max_range":  13
+      ,"min_value":   1
+    },
+    "straight":{
+       "rank_value":  5
+      ,"value_count": 5
+      ,"value_max":   1
+      ,"suit_count":  4
+      ,"max_range":   4
+      ,"min_value":   1
+    },
+    "flush":{
+       "rank_value":  6
+      ,"value_count": 5
+      ,"value_max":   5
+      ,"suit_count":  1
+      ,"max_range":  13
+      ,"min_value":   1
+    },
+    "full_house":{
+       "rank_value":  7
+      ,"value_count": 2
+      ,"value_max":   3
+      ,"suit_count":  4
+      ,"max_range":  13
+      ,"min_value":   1
+    },
+    "four_of_a_kind":{
+       "rank_value":  8
+      ,"value_count": 2
+      ,"value_max":   4
+      ,"suit_count":  4
+      ,"max_range":  13
+      ,"min_value":   1
+    },
+    "straight_flush":{
+       "rank_value":  9
+      ,"value_count": 5
+      ,"value_max":   1
+      ,"suit_count":  1
+      ,"max_range":   4
+      ,"min_value":   1
+    },
+    "royal_flush":{
+       "rank_value": 10
+      ,"value_count": 5
+      ,"value_max":   1
+      ,"suit_count":  1
+      ,"max_range":   4
+      ,"min_value":  10
+    }
+  },
+  "game_settings":{
+    "hand_size":      5
+  }
+}
