@@ -15,7 +15,7 @@
     ,"king":          [13]
   },
   "hand_ranks":{
-    "high_card":{
+    "high card":{
        "rank_value":  1
       ,"value_count": 5
       ,"value_max":   1
@@ -31,7 +31,7 @@
       ,"max_range":  13
       ,"min_value":   1
     },
-    "two_pair":{
+    "two pair":{
        "rank_value":  3
       ,"value_count": 3
       ,"value_max":   2
@@ -39,7 +39,7 @@
       ,"max_range":  13
       ,"min_value":   1
     },
-    "three_of_a_kind":{
+    "three of a kind":{
        "rank_value":  4
       ,"value_count": 3
       ,"value_max":   3
@@ -63,7 +63,7 @@
       ,"max_range":  13
       ,"min_value":   1
     },
-    "full_house":{
+    "full house":{
        "rank_value":  7
       ,"value_count": 2
       ,"value_max":   3
@@ -71,7 +71,7 @@
       ,"max_range":  13
       ,"min_value":   1
     },
-    "four_of_a_kind":{
+    "four of a kind":{
        "rank_value":  8
       ,"value_count": 2
       ,"value_max":   4
@@ -79,7 +79,7 @@
       ,"max_range":  13
       ,"min_value":   1
     },
-    "straight_flush":{
+    "straight flush":{
        "rank_value":  9
       ,"value_count": 5
       ,"value_max":   1
@@ -87,7 +87,7 @@
       ,"max_range":   4
       ,"min_value":   1
     },
-    "royal_flush":{
+    "royal flush":{
        "rank_value": 10
       ,"value_count": 5
       ,"value_max":   1
