@@ -3,10 +3,11 @@ class purposed with the create, read, update, and delete functions of a hand of 
 """
 
 from collections import deque
-from typing import Deque, Set
+from typing import Deque, Set, Tuple
 
 from poker_python_project.app.card import Card
 from poker_python_project.app.deck import Deck
+from poker_python_project.app.score import Score
 
 
 class Hand:
@@ -21,6 +22,7 @@ class Hand:
         self._deck = draw_from
         self._cards: Deque[Card] = deque()
         self._search: Set[Card] = set()
+        self._score: Score
 
     def check(self, card: Card) -> bool:
         """
@@ -61,3 +63,10 @@ class Hand:
                 self.discard(card)
             return card
         return None
+
+    def score(self) -> Tuple[int, int, str]:
+        """
+        Calculate the score for the hand based on the game_rules
+        """
+        self._score = Score(self._cards)
+        return self._score.calculate()
