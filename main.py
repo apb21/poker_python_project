@@ -13,10 +13,12 @@ def main():
     print("Hello from poker-python-project!")
     new_deck = Deck(True)
     hand = Hand(new_deck)
-    drawn_cards = hand.draw(7)
+    drawn_cards = hand.draw(5)
     print(f"You've drawn: {drawn_cards}")
     for card in hand.show():
         print(card)
+    hand_score = hand.score()
+    print(hand_score[2])
 
 
 if __name__ == "__main__":
