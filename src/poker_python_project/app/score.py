@@ -29,8 +29,12 @@ class Score:
     def calculate(self) -> Tuple[int, int, str]:
         """
         Compare the Hand to the score_rules to get a rank.
-        Returns a Tuple of [max_rank: 1 to 10, high_card: 1 to 14]
-        Higher numbers are better.
+        Returns a Tuple of [
+            max_rank: 1 to 10,
+            high_card: 1 to 14,
+            rank_str: "{rank_name} high card:{card_symbol}"
+        ]
+        Higher numbers of max_rank and high_card are better.
         """
         value_counter = Counter(card.value for card in self.hand)
         value_count = len(value_counter)
@@ -69,6 +73,13 @@ class Score:
             key=lambda x: max(self._score_rules["card_scores"].get(x.value, 0)),
         )
         best_card_symbol = best_card.symbol
-        rank_name = f"{str(max_rank_name)} (high card {str(best_card_symbol)})"
+        rank_name = f"{str(max_rank_name)} (with high card {str(best_card_symbol)})"
         self._rank_value = (int(max_rank), int(high_card), rank_name)
         return self._rank_value
+
+    @property
+    def score_rules(self):
+        """
+        Get the underlying score rules for the score
+        """
+        return self._score_rules
