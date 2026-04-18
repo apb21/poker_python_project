@@ -58,7 +58,7 @@
     "flush":{
        "rank_value":  6
       ,"value_count": 5
-      ,"value_max":   5
+      ,"value_max":   1
       ,"suit_count":  1
       ,"max_range":  13
       ,"min_value":   1
